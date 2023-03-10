@@ -16,6 +16,7 @@ Future initApp() async {
   eventBus?.on<ButtonAClicked>().listen((event) { 
     print(event.text);
   });
+  return;
 }
 
 class MyApp extends StatelessWidget {
