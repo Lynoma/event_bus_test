@@ -3,8 +3,7 @@ import 'package:event_bus_test/events.dart';
 import 'package:event_bus_test/widgets/counter_button.dart';
 import 'package:event_bus_test/widgets/counter_presenter.dart';
 import 'package:flutter/material.dart';
-
-EventBus? eventBus;
+import 'package:get_it/get_it.dart';
 
 void main() async {
   await initApp();
@@ -12,10 +11,8 @@ void main() async {
 }
 
 Future initApp() async {
-  eventBus = EventBus();
-  eventBus?.on<ButtonAClicked>().listen((event) { 
-    print(event.text);
-  });
+  final getIt = GetIt.instance;  
+  getIt.registerSingleton(EventBus());
   return;
 }
 
@@ -72,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: const CounterButton(),// This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: CounterButton(),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
